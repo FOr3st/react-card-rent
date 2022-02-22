@@ -1,46 +1,41 @@
-# Getting Started with Create React App
+# Rent form recruitment task
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Thank you for joining our recruitment process. Please try to not spend more than 2h-3h solving it. We are respectinjg your time.
 
-## Available Scripts
+This repository contains [Create React App](https://create-react-app.dev/). Use it as boilerplate for your solution. We don't want to waste your time with too much setup. There is also [Jest](https://jestjs.io/) and [Cypress](https://www.cypress.io/) for tests.
 
-In the project directory, you can run:
+## The problem
 
-### `npm start`
+We'd like you to build card rent form:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Get a card data from our API. `GET /card/:cardId`
+- render a form where user can provide new price
+- send new price back to the API and show confirmation message (`POST /card/:cardId`, API expects `rentAmount` property)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+New price should be at least 10% higher then previous one.
 
-### `npm test`
+### API endpoints
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+API is located under [https:/.....]() url. There are two endpoints:
 
-### `npm run build`
+- `GET /card/:cardId` returns card data (we will provide cardId by email as we use different cards for different candidates)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- `POST /card/:cardId` "rents" the card, set new card price. It's expecting JSON object with `rentAmount` property (number). If there was no errors it will return JSON with updated `card` property. If there was an error it will return JSON with `error` proeprty.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Expectations
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+We are not going to pay much atention to design.
 
-### `npm run eject`
+Business logic, naming, separation of concerns and tests are much more important for us. You have Cypress nad Jest in your toolbox - use them at your discretion.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Typescript please.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Delivery
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Please, make a fork, do your changes and send us know link to the repo.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+If you don't have enough time to finish work, please try at least describe your next actions and solutions.
 
-## Learn More
+We hope to see your solution in a week. If this time frame doesn't work for you let us know - we will figure something out.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Thanks, and good luck!
