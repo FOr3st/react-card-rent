@@ -16,7 +16,7 @@ The new price should be at least 10% higher then previous one.
 
 ### API endpoints
 
-The API is located under [https:/.....]() url. There are two endpoints:
+The API is located under [https://awesome-dev-task-api.fly.dev/](https://awesome-dev-task-api.fly.dev/) url. There are two endpoints:
 
 - `GET /card/:cardId` returns card data (we will provide the cardId by email as we will use different cards for different candidates)
 
