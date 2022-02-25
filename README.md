@@ -32,7 +32,7 @@ Typescript please.
 
 ## Delivery
 
-Please, make a fork, do your changes and send us the link to the repo.
+Please, clone this repository, create a new one, do your changes and send us the link to the repo.
 
 If you don't have enough time to finish work don't worry, please try at least describe your next actions and solutions.
 
