@@ -7,7 +7,7 @@ export interface ApplicationState {
   rentCard(rentPrice: number): void;
 }
 
-export type Action = (state: ApplicationState, setState:(state: ApplicationState) => void, args?: any) => void;
+export type Command = (state: ApplicationState, setState:(state: ApplicationState) => void, args?: any) => void;
 
 export interface CardData {
   currentPrice: number;

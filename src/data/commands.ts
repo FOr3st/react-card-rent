@@ -1,12 +1,12 @@
 import { toast } from 'react-toastify';
-import { ApplicationState, Action } from "./types";
+import { ApplicationState, Command } from "./types";
 import { isResponseError, } from './utils';
 import {
     loadCard,
     rentCard
 } from "../api";
 
-export const loadCardAction: Action = async (state: ApplicationState, setState: (state: ApplicationState) => void) => {
+export const loadCardCommand: Command = async (state: ApplicationState, setState: (state: ApplicationState) => void) => {
     setState({
         ...state,
         isLoading: true,
@@ -28,7 +28,7 @@ export const loadCardAction: Action = async (state: ApplicationState, setState: 
     });
 };
 
-export const rentCardAction = async (state: ApplicationState, setState: (state: ApplicationState) => void, rentPrice: number) => {
+export const rentCardCommand = async (state: ApplicationState, setState: (state: ApplicationState) => void, rentPrice: number) => {
     const { cardId } = state;
 
     const response = await rentCard(cardId, rentPrice);

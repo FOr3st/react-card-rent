@@ -1,7 +1,7 @@
 import React, { FC, ReactNode } from "react";
 import { CARD_ID } from "../constants";
-import { loadCardAction, rentCardAction } from "./actions";
-import { ApplicationState, Action } from "./types";
+import { loadCardCommand, rentCardCommand } from "./commands";
+import { ApplicationState, Command } from "./types";
 import { noop } from './utils';
 
 /**
@@ -36,13 +36,13 @@ export class ModelContextProvider extends React.Component<
         isLoading: false,
         cardId: CARD_ID,
         cardData: undefined,
-        loadCard: this.wrapAction(loadCardAction),
-        rentCard: this.wrapAction(rentCardAction),
+        loadCard: this.wrapAction(loadCardCommand),
+        rentCard: this.wrapAction(rentCardCommand),
       },
     };
   }
 
-  private wrapAction = (action: Action) => (args?: any) => {
+  private wrapAction = (action: Command) => (args?: any) => {
     action(this.state.context, (state: ApplicationState) => this.setState({ context: { ...state } }), args);
   }
 
