@@ -1,5 +1,5 @@
-import * as React from 'react';
-import styled from 'styled-components';
+import * as React from "react";
+import styled from "styled-components";
 
 const AnimatedContainer = styled.div<SpinnerProps>`
   display: inline-block;
@@ -17,7 +17,8 @@ const AnimatedContainer = styled.div<SpinnerProps>`
     border: 6px solid #fff;
     border-radius: 50%;
     animation: spinner-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-    border-color: ${({ color }) => (color ? color : `#fff`)} transparent transparent transparent;
+    border-color: ${({ color }) => (color ? color : `#fff`)} transparent
+      transparent transparent;
   }
   & div:nth-child(1) {
     animation-delay: -0.45s;
@@ -43,7 +44,7 @@ export interface SpinnerProps {
   color?: string;
 }
 
-export const Spinner: React.SFC<SpinnerProps> = props => (
+export const Spinner: React.SFC<SpinnerProps> = (props) => (
   <AnimatedContainer {...props}>
     <div />
     <div />

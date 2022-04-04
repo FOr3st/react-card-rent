@@ -1,8 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import {
-  ViewCardPage,
-} from "./containers";
+import { ViewCardPage } from "./containers";
 import { ModelContextProvider } from "./data";
 
 export const ApplicationRouter = () => {

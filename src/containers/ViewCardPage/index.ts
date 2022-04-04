@@ -1,1 +1,1 @@
-export * from './ViewCardPage';
+export * from "./ViewCardPage";

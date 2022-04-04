@@ -1,8 +1,8 @@
 import React from "react";
-import { ToastContainer } from 'react-toastify';
-import { createGlobalStyle } from 'styled-components'
+import { ToastContainer } from "react-toastify";
+import { createGlobalStyle } from "styled-components";
 import { ApplicationRouter } from "./ApplicationRouter";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 const GlobalStyle = createGlobalStyle`
   * {
