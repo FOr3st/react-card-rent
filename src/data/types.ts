@@ -1,4 +1,3 @@
-
 export interface ApplicationState {
   isLoading: boolean;
   cardId: string;
@@ -7,7 +6,13 @@ export interface ApplicationState {
   rentCard(rentPrice: number): void;
 }
 
-export type Command = (state: ApplicationState, setState:(state: ApplicationState) => void, args?: any) => void;
+export type UpdateStateMethod = (state: Partial<ApplicationState>) => void;
+
+export type Command = (
+  state: ApplicationState,
+  updateState: UpdateStateMethod,
+  args?: any
+) => void;
 
 export interface CardData {
   currentPrice: number;
