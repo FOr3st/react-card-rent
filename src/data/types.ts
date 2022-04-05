@@ -2,16 +2,21 @@ export interface ApplicationState {
   isLoading: boolean;
   cardId: string;
   cardData?: CardData;
+}
+
+export interface ApplicationCommands {
   loadCard(): void;
   rentCard(rentPrice: number): void;
 }
+
+export type ApplicationModel = ApplicationState & ApplicationCommands;
 
 export type UpdateStateMethod = (state: Partial<ApplicationState>) => void;
 
 export type Command = (
   state: ApplicationState,
   updateState: UpdateStateMethod,
-  args?: any
+  ...args: any
 ) => void;
 
 export interface CardData {

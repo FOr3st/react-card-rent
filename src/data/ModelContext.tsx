@@ -8,13 +8,16 @@ import React, {
 } from "react";
 import { CARD_ID } from "../constants";
 import { loadCardCommand, rentCardCommand } from "./commands";
-import { ApplicationState, Command } from "./types";
+import { ApplicationModel, ApplicationState, Command } from "./types";
 import { noop } from "./utils";
 
 const emptyState = {
   isLoading: false,
   cardId: "",
   cardData: undefined,
+};
+
+const emptyCommands = {
   loadCard: noop,
   rentCard: noop,
 };
@@ -22,50 +25,63 @@ const emptyState = {
 /**
  * Model context is a data model and controller of the entire application.
  */
-export const ModelContext = React.createContext<ApplicationState>(emptyState);
+ export const ModelContext = React.createContext<ApplicationModel>({
+  ...emptyState,
+  ...emptyCommands,
+});
 
 /**
  * Model context is used to share model data across different
  * components using React context flow. To provide model context to
  * children components ModelContextProvider is used.
  */
-export const ModelContextProvider: FC = ({ children }) => {
-  const [context, setContext] = useState<ApplicationState>(emptyState);
-  const ref = useRef(context);
+ export const ModelContextProvider: FC = ({ children }) => {
+  const [appState, setAppState] = useState<ApplicationState>(emptyState);
+  const ref = useRef(appState);
 
-  const updateState = useCallback((newState: ApplicationState) => {
+  const updateAppState = useCallback((newState: ApplicationState) => {
     ref.current = newState;
-    setContext(newState);
+    setAppState(newState);
   }, []);
 
   const wrapCommand = useMemo(
-    () => (command: Command) => (args?: any) => {
-      command(
-        ref.current,
-        (stateUpdates: Partial<ApplicationState>) => {
-          updateState({ ...ref.current, ...stateUpdates });
-        },
-        args
-      );
-    },
+    () =>
+      (command: Command) =>
+      (...args: any) => {
+        command.apply(undefined, [
+          ref.current,
+          (stateUpdates: Partial<ApplicationState>) => {
+            updateAppState({ ...ref.current, ...stateUpdates });
+          },
+          ...args,
+        ]);
+      },
+    []
+  );
+
+  const appCommands = useMemo(
+    () => ({
+      loadCard: wrapCommand(loadCardCommand),
+      rentCard: wrapCommand(rentCardCommand),
+    }),
     []
   );
 
   useEffect(() => {
-    updateState({
+    updateAppState({
       isLoading: false,
       cardId: CARD_ID,
       cardData: undefined,
-      loadCard: wrapCommand(loadCardCommand),
-      rentCard: wrapCommand(rentCardCommand),
     });
   }, []);
 
-  if (context === emptyState) {
+  if (appState === emptyState) {
     return null;
   }
 
   return (
-    <ModelContext.Provider value={context}>{children}</ModelContext.Provider>
+    <ModelContext.Provider value={{ ...appState, ...appCommands }}>
+      {children}
+    </ModelContext.Provider>
   );
 };
